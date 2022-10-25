@@ -1,4 +1,4 @@
-package de.htwberlin.webtech.web;
+package de.htwberlin.webtech.web.api;
 
 public class Person {
 
