@@ -7,6 +7,7 @@ import de.htwberlin.webtech.web.persistence.PersonRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -21,6 +22,11 @@ public class PersonService {
     public List<Person> findAll() {
         List<PersonEntity> persons = personRepository.findAll();
         return persons.stream().map(this::transformEntity).collect(Collectors.toList());
+    }
+
+    public Person findById(Long id) {
+        var personEntity = personRepository.findById(id);
+        return personEntity.map(this::transformEntity).orElse(null);
     }
 
     public Person create(PersonCreateRequest request) {
