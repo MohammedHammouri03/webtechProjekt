@@ -1,6 +1,7 @@
 package de.htwberlin.webtech.service;
 
 import de.htwberlin.webtech.web.api.Person;
+import de.htwberlin.webtech.web.api.PersonCreateRequest;
 import de.htwberlin.webtech.web.persistence.PersonEntity;
 import de.htwberlin.webtech.web.persistence.PersonRepository;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,16 @@ public class PersonService {
 
     public List<Person> findAll() {
         List<PersonEntity> persons = personRepository.findAll();
-        return persons.stream().map(personEntity -> new Person(personEntity.getId(), personEntity.getFirstname(), personEntity.getLastname())).collect(Collectors.toList());
+        return persons.stream().map(this::transformEntity).collect(Collectors.toList());
     }
 
+    public Person create(PersonCreateRequest request) {
+        var personEntity = new PersonEntity(request.getFirstName(), request.getLastName());
+        personEntity = personRepository.save(personEntity);
+        return transformEntity(personEntity);
+    }
+
+    private Person transformEntity(PersonEntity personEntity) {
+        return new Person(personEntity.getId(), personEntity.getFirstname(), personEntity.getLastname());
+    }
 }
