@@ -1,13 +1,12 @@
 package de.htwberlin.webtech.service;
 
 import de.htwberlin.webtech.web.api.Person;
-import de.htwberlin.webtech.web.api.PersonCreateRequest;
+import de.htwberlin.webtech.web.api.PersonManipulationRequest;
 import de.htwberlin.webtech.web.persistence.PersonEntity;
 import de.htwberlin.webtech.web.persistence.PersonRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -29,13 +28,35 @@ public class PersonService {
         return personEntity.map(this::transformEntity).orElse(null);
     }
 
-    public Person create(PersonCreateRequest request) {
+    public Person create(PersonManipulationRequest request) {
         var personEntity = new PersonEntity(request.getFirstName(), request.getLastName());
         personEntity = personRepository.save(personEntity);
         return transformEntity(personEntity);
     }
 
+    public Person update(Long id, PersonManipulationRequest request) {
+        var personEntityOptional = personRepository.findById(id);
+        if (personEntityOptional.isEmpty()) {
+            return null;
+        }
+        var personEntity = personEntityOptional.get();
+        personEntity.setFirstname(request.getFirstName());
+        personEntity.setLastname(request.getLastName());
+        personEntity = personRepository.save(personEntity);
+
+        return transformEntity(personEntity);
+    }
+
+    public boolean delete(Long id) {
+        if (!personRepository.existsById(id)) {
+            return false;
+        }
+        personRepository.deleteById(id);
+        return true;
+    }
+
     private Person transformEntity(PersonEntity personEntity) {
         return new Person(personEntity.getId(), personEntity.getFirstname(), personEntity.getLastname());
     }
+
 }
