@@ -10,3 +10,5 @@ public interface PersonRepository extends JpaRepository<PersonEntity, Long> {
 
     List<PersonEntity> findAllByFirstname(String firstname);
 }
+
+

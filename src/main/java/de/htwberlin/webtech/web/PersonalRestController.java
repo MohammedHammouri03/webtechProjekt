@@ -22,6 +22,5 @@ public class PersonalRestController {
     public ResponseEntity<List<Person>> fetchPersons() {
         var persons = personService.findAll();
         return ResponseEntity.ok(persons);
-
     }
 }
