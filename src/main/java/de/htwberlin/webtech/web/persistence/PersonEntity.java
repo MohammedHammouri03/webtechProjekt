@@ -1,6 +1,8 @@
 package de.htwberlin.webtech.web.persistence;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "persons")
 public class PersonEntity {
@@ -19,6 +21,9 @@ public class PersonEntity {
     @Column(name = "Email", nullable = false)
     private String email;
 
+    @OneToMany(mappedBy = "person", fetch = FetchType.EAGER)
+    private List<VocabulariesEntity> vocabulariesid = new ArrayList<>();
+
     public PersonEntity(String firstname, String lastname, String email) {
         this.firstname = firstname;
         this.lastname = lastname;
@@ -36,11 +41,14 @@ public class PersonEntity {
         return firstname;
     }
 
-    public String getEmail() {return email;}
+    public String getEmail() {
+        return email;
+    }
 
     public void setFirstname(String firstname) {
         this.firstname = firstname;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
@@ -52,4 +60,19 @@ public class PersonEntity {
     public void setLastname(String lastname) {
         this.lastname = lastname;
     }
+
+    public List<VocabulariesEntity> getVocabularies() {
+        return vocabulariesid;
+    }
+
+    public void getWord (String word) {
+        this.vocabulariesid.add(new VocabulariesEntity(word, this));
+    }
+    public void setWord (String word) {
+        this.vocabulariesid.add(new VocabulariesEntity(word, this));
+    }
+    public void setVocabularies(List<VocabulariesEntity> vocabulariesid) {
+        this.vocabulariesid = vocabulariesid;
+    }
+
 }

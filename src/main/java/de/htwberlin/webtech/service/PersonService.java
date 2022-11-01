@@ -20,18 +20,18 @@ public class PersonService {
 
     public List<Person> findAll() {
         List<PersonEntity> persons = personRepository.findAll();
-        return persons.stream().map(this::transformEntity).collect(Collectors.toList());
+        return persons.stream().map(PersonTransformer::transformEntity).collect(Collectors.toList());
     }
 
     public Person findById(Long id) {
         var personEntity = personRepository.findById(id);
-        return personEntity.map(this::transformEntity).orElse(null);
+        return personEntity.map(PersonTransformer::transformEntity).orElse(null);
     }
 
     public Person create(PersonManipulationRequest request) {
         var personEntity = new PersonEntity(request.getFirstName(), request.getLastName(), request.getEmail());
         personEntity = personRepository.save(personEntity);
-        return transformEntity(personEntity);
+        return PersonTransformer.transformEntity(personEntity);
     }
 
     public Person update(Long id, PersonManipulationRequest request) {
@@ -45,7 +45,7 @@ public class PersonService {
         personEntity.setEmail(request.getEmail());
         personEntity = personRepository.save(personEntity);
 
-        return transformEntity(personEntity);
+        return PersonTransformer.transformEntity(personEntity);
     }
 
     public boolean delete(Long id) {
@@ -55,9 +55,4 @@ public class PersonService {
         personRepository.deleteById(id);
         return true;
     }
-
-    private Person transformEntity(PersonEntity personEntity) {
-        return new Person(personEntity.getId(), personEntity.getFirstname(), personEntity.getLastname(), personEntity.getEmail());
-    }
-
 }

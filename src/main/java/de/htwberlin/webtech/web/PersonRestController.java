@@ -11,11 +11,11 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
-public class PersonalRestController {
+public class PersonRestController {
 
     private final PersonService personService;
 
-    public PersonalRestController(PersonService personService) {
+    public PersonRestController(PersonService personService) {
         this.personService = personService;
     }
 
@@ -48,4 +48,5 @@ public class PersonalRestController {
         boolean sucessfull = personService.delete(id);
         return sucessfull ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
     }
+
 }
