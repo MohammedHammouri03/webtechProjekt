@@ -16,10 +16,13 @@ public class PersonEntity {
     @Column(name = "last_name", nullable = false)
     private String lastname;
 
+    @Column(name = "Email", nullable = false)
+    private String email;
 
-    public PersonEntity(String firstname, String lastname) {
+    public PersonEntity(String firstname, String lastname, String email) {
         this.firstname = firstname;
         this.lastname = lastname;
+        this.email = email;
     }
 
     protected PersonEntity() {
@@ -33,8 +36,13 @@ public class PersonEntity {
         return firstname;
     }
 
+    public String getEmail() {return email;}
+
     public void setFirstname(String firstname) {
         this.firstname = firstname;
+    }
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getLastname() {

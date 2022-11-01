@@ -29,7 +29,7 @@ public class PersonService {
     }
 
     public Person create(PersonManipulationRequest request) {
-        var personEntity = new PersonEntity(request.getFirstName(), request.getLastName());
+        var personEntity = new PersonEntity(request.getFirstName(), request.getLastName(), request.getEmail());
         personEntity = personRepository.save(personEntity);
         return transformEntity(personEntity);
     }
@@ -42,6 +42,7 @@ public class PersonService {
         var personEntity = personEntityOptional.get();
         personEntity.setFirstname(request.getFirstName());
         personEntity.setLastname(request.getLastName());
+        personEntity.setEmail(request.getEmail());
         personEntity = personRepository.save(personEntity);
 
         return transformEntity(personEntity);
@@ -56,7 +57,7 @@ public class PersonService {
     }
 
     private Person transformEntity(PersonEntity personEntity) {
-        return new Person(personEntity.getId(), personEntity.getFirstname(), personEntity.getLastname());
+        return new Person(personEntity.getId(), personEntity.getFirstname(), personEntity.getLastname(), personEntity.getEmail());
     }
 
 }

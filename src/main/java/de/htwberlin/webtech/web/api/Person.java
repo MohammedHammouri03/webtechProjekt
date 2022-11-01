@@ -6,10 +6,13 @@ public class Person {
     private String firstName;
     private String lastName;
 
-    public Person(long id, String firstName, String lastName) {
+    private String email;
+
+    public Person(long id, String firstName, String lastName, String email) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.email = email;
     }
 
     public long getId() {
@@ -36,5 +39,11 @@ public class Person {
         this.lastName = lastName;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }
- 
