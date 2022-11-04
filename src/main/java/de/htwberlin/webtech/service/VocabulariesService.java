@@ -22,7 +22,8 @@ public class VocabulariesService {
         this.personTransformer = personTransformer;
     }
     public List<Vocabularies> findAll() {
-        return vocabulariesRepository.findAll().stream().map(this::transformEntity).collect(Collectors.toList());
+        List<VocabulariesEntity> vocabularies = vocabulariesRepository.findAll();
+        return vocabularies.stream().map(this::transformEntity).collect(Collectors.toList());
     }
     public Vocabularies create(Vocabulariesmanipulationrequest request) {
         var vocabulariesEntity = new VocabulariesEntity(request.getWord(), PersonEntity);
@@ -31,6 +32,7 @@ public class VocabulariesService {
     }
     private Vocabularies transformEntity(VocabulariesEntity vocabulariesEntity) {
         return new Vocabularies(vocabulariesEntity.getId(), vocabulariesEntity.getWord(), personTransformer.transformEntity(vocabulariesEntity.getPerson()));
+
     }
 }
 

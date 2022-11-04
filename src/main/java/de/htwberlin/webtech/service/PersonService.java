@@ -13,25 +13,27 @@ import java.util.stream.Collectors;
 public class PersonService {
 
     private final PersonRepository personRepository;
+    private final PersonTransformer personTransformer;
 
-    public PersonService(PersonRepository personRepository) {
+    public PersonService(PersonRepository personRepository, PersonTransformer personTransformer) {
         this.personRepository = personRepository;
+        this.personTransformer = personTransformer;
     }
 
     public List<Person> findAll() {
         List<PersonEntity> persons = personRepository.findAll();
-        return persons.stream().map(PersonTransformer::transformEntity).collect(Collectors.toList());
+        return persons.stream().map(personTransformer::transformEntity).collect(Collectors.toList());
     }
 
     public Person findById(Long id) {
         var personEntity = personRepository.findById(id);
-        return personEntity.map(PersonTransformer::transformEntity).orElse(null);
+        return personEntity.map(personTransformer::transformEntity).orElse(null);
     }
 
     public Person create(PersonManipulationRequest request) {
         var personEntity = new PersonEntity(request.getFirstName(), request.getLastName(), request.getEmail());
         personEntity = personRepository.save(personEntity);
-        return PersonTransformer.transformEntity(personEntity);
+        return personTransformer.transformEntity(personEntity);
     }
 
     public Person update(Long id, PersonManipulationRequest request) {
@@ -45,14 +47,16 @@ public class PersonService {
         personEntity.setEmail(request.getEmail());
         personEntity = personRepository.save(personEntity);
 
-        return PersonTransformer.transformEntity(personEntity);
+        return personTransformer.transformEntity(personEntity);
+
     }
 
-    public boolean delete(Long id) {
+    public boolean deleteById(Long id) {
         if (!personRepository.existsById(id)) {
             return false;
         }
         personRepository.deleteById(id);
         return true;
+
     }
 }

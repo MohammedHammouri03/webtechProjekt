@@ -10,7 +10,7 @@ public class VocabulariesEntity {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "word", nullable = false)
+    @Column(name = "word", nullable = true)
     private String word;
 
     @ManyToOne(cascade = CascadeType.MERGE)

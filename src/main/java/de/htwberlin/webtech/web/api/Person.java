@@ -8,14 +8,14 @@ public class Person {
     private String firstName;
     private String lastName;
     private String email;
-    private List<Long> vocabulariesid;
+    private List<Long> vocabularies;
 
-    public Person(long id, String firstName, String lastName, String email, List<Long> vocabulariesid) {
+    public Person(long id, String firstName, String lastName, String email, List<Long> vocabularies) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.vocabulariesid = vocabulariesid;
+        this.vocabularies = vocabularies;
     }
 
     public long getId() {
@@ -49,10 +49,10 @@ public class Person {
     public void setEmail(String email) {
         this.email = email;
     }
-    public void setVocabulariesid(List<Long> vocabulariesid) {
-        this.vocabulariesid = vocabulariesid;
+    public void setVocabularies(List<Long> vocabulariesid) {
+        this.vocabularies = vocabulariesid;
     }
-    public List<Long> getVocabulariesid() {
-        return vocabulariesid;
+    public List<Long> getVocabularies() {
+        return vocabularies;
     }
 }
