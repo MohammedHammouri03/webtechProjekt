@@ -12,6 +12,6 @@ public class PersonTransformer {
 
     public Person transformEntity(PersonEntity personEntity) {
         var vocabulariesid = personEntity.getVocabularies().stream().map(VocabulariesEntity::getId).collect(Collectors.toList());
-        return new Person(personEntity.getId(), personEntity.getFirstname(), personEntity.getLastname(), personEntity.getEmail(), vocabulariesid);
+        return new Person(personEntity.getId(), personEntity.getFirstname(), personEntity.getLastname(), personEntity.getEmail(), vocabulariesid,personEntity.getPasswort());
     }
 }

@@ -6,11 +6,13 @@ public class PersonManipulationRequest {
     private String lastName;
 
     private String email;
+    private String passwort;
 
-    public PersonManipulationRequest(String firstName, String lastName, String email) {
+    public PersonManipulationRequest(String firstName, String lastName, String email, String passwort) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.passwort = passwort;
     }
 
     public String getFirstName() {
@@ -35,6 +37,12 @@ public class PersonManipulationRequest {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPasswort(){return passwort;}
+
+    public void setPasswort(String passwort){
+        this.passwort = passwort;
     }
 }
 

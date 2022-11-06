@@ -21,13 +21,17 @@ public class PersonEntity {
     @Column(name = "Email", nullable = false)
     private String email;
 
+    @Column(name = "Passwort", nullable = false)
+    private String passwort;
+
     @OneToMany(mappedBy = "person", fetch = FetchType.EAGER)
     private List<VocabulariesEntity> vocabulariesid = new ArrayList<>();
 
-    public PersonEntity(String firstname, String lastname, String email) {
+    public PersonEntity(String firstname, String lastname, String email, String passwort) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
+        this.passwort = passwort;
     }
 
     protected PersonEntity() {
@@ -61,16 +65,26 @@ public class PersonEntity {
         this.lastname = lastname;
     }
 
+    public String getPasswort() {
+        return passwort;
+    }
+
+    public void setPasswort(String passwort) {
+        this.passwort = passwort;
+    }
+
     public List<VocabulariesEntity> getVocabularies() {
         return vocabulariesid;
     }
 
-    public void getWord (String word) {
+    public void getWord(String word) {
         this.vocabulariesid.add(new VocabulariesEntity(word, this));
     }
-    public void setWord (String word) {
+
+    public void setWord(String word) {
         this.vocabulariesid.add(new VocabulariesEntity(word, this));
     }
+
     public void setVocabularies(List<VocabulariesEntity> vocabulariesid) {
         this.vocabulariesid = vocabulariesid;
     }

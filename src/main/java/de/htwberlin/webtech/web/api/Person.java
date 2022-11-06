@@ -8,14 +8,17 @@ public class Person {
     private String firstName;
     private String lastName;
     private String email;
+
+    private String passwort;
     private List<Long> vocabularies;
 
-    public Person(long id, String firstName, String lastName, String email, List<Long> vocabularies) {
+    public Person(long id, String firstName, String lastName, String email, List<Long> vocabularies, String passwort) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.vocabularies = vocabularies;
+        this.passwort = passwort;
     }
 
     public long getId() {
@@ -26,6 +29,9 @@ public class Person {
         this.id = id;
     }
 
+    public String getPasswort(){return passwort;}
+
+    public void setPasswort() {this.passwort = passwort;}
     public String getFirstName() {
         return firstName;
     }
