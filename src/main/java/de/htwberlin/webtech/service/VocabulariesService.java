@@ -31,7 +31,7 @@ public class VocabulariesService {
         return transformEntity(vocabulariesEntity);
     }
     private Vocabularies transformEntity(VocabulariesEntity vocabulariesEntity) {
-        return new Vocabularies(vocabulariesEntity.getId(), vocabulariesEntity.getWord(), personTransformer.transformEntity(vocabulariesEntity.getPerson()));
+        return new Vocabularies(vocabulariesEntity.getId(), vocabulariesEntity.getWord(), personTransformer.transformEntity(vocabulariesEntity.getPerson()), vocabulariesEntity.getTranslation());
 
     }
 }

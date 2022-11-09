@@ -5,12 +5,14 @@ public class Vocabulariesmanipulationrequest {
     public long id;
     public String word;
 
+    public String translation;
     private Long person;
 
-    public Vocabulariesmanipulationrequest(long id, String word, Long person) {
+    public Vocabulariesmanipulationrequest(long id, String word, Long person, String translation) {
         this.id = id;
         this.word = word;
         this.person = person;
+        this.translation = translation;
     }
 
     public long getId() {
@@ -35,5 +37,12 @@ public class Vocabulariesmanipulationrequest {
 
     public void setPerson(Long person) {
         this.person = person;
+    }
+
+    public String getTranslation() {
+        return translation;
+    }
+    public void setTranslation(String translation) {
+        this.translation = translation;
     }
 }

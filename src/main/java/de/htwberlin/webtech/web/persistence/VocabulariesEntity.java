@@ -13,6 +13,9 @@ public class VocabulariesEntity {
     @Column(name = "word", nullable = true)
     private String word;
 
+    @Column(name = "translation", nullable = true)
+    private String translation;
+
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "person_id", referencedColumnName = "id")
     private PersonEntity person;
@@ -45,5 +48,11 @@ public class VocabulariesEntity {
 
     public void setPerson(PersonEntity person) {
         this.person = person;
+    }
+public String getTranslation() {
+    return translation;
+}
+    public void setTranslation(String translation) {
+        this.translation = translation;
     }
 }

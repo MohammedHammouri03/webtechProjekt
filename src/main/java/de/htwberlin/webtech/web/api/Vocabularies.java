@@ -6,10 +6,13 @@ public class Vocabularies {
     private long id;
     private String word;
 
-    public Vocabularies(long id, String word, Person person) {
+    private String translation;
+
+    public Vocabularies(long id, String word, Person person, String translation) {
         this.id = id;
         this.word = word;
         this.person = person;
+        this.translation = translation;
     }
 
     public long getId() {
@@ -32,5 +35,11 @@ public class Vocabularies {
     }
     public Person setPerson(Person person) {
         return this.person = person;
+    }
+    public String getTranslation() {
+        return translation;
+    }
+    public String setTranslation(String translation) {
+        return this.translation = translation;
     }
 }
