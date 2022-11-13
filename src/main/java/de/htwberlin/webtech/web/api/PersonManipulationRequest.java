@@ -8,12 +8,14 @@ public class PersonManipulationRequest {
     private String email;
     private String passwort;
 
+
     public PersonManipulationRequest(String firstName, String lastName, String email, String passwort) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.passwort = passwort;
     }
+    public PersonManipulationRequest(){}
 
     public String getFirstName() {
         return firstName;
