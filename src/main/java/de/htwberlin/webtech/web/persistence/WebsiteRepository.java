@@ -2,11 +2,7 @@ package de.htwberlin.webtech.web.persistence;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
-
 @Repository
-public interface PersonRepository extends JpaRepository<PersonEntity, Long> {
+    public interface WebsiteRepository extends JpaRepository<WebsiteEntity, Long> {
+    }
 
-    List<PersonEntity> findAllByFirstname(String firstname);
-}

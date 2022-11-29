@@ -47,5 +47,3 @@ public class PersonManipulationRequest {
         this.passwort = passwort;
     }
 }
-
-

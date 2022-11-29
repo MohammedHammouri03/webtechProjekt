@@ -1,4 +1,4 @@
-package de.htwberlin.webtech.web.persistence;
+package de.htwberlin.webtech.web.api;
 
 public class Vocabulariesmanipulationrequest {
 
@@ -13,6 +13,8 @@ public class Vocabulariesmanipulationrequest {
         this.word = word;
         this.person = person;
         this.translation = translation;
+    }
+    public Vocabulariesmanipulationrequest() {
     }
 
     public long getId() {

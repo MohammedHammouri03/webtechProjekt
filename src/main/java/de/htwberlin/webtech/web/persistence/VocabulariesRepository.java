@@ -6,4 +6,3 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface VocabulariesRepository extends JpaRepository<VocabulariesEntity, Long> {
 }
-

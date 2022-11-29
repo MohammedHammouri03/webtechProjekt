@@ -12,16 +12,16 @@ public class PersonEntity {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "first_name", nullable = false)
+    @Column(name = "first_name", nullable = true)
     private String firstname;
 
-    @Column(name = "last_name", nullable = false)
+    @Column(name = "last_name", nullable = true)
     private String lastname;
 
-    @Column(name = "Email", nullable = false)
+    @Column(name = "Email", nullable = true)
     private String email;
 
-    @Column(name = "Passwort", nullable = false)
+    @Column(name = "Passwort", nullable = true)
     private String passwort;
 
     @OneToMany(mappedBy = "person", fetch = FetchType.EAGER)
@@ -75,14 +75,6 @@ public class PersonEntity {
 
     public List<VocabulariesEntity> getVocabularies() {
         return vocabulariesid;
-    }
-
-    public void getWord(String word) {
-        this.vocabulariesid.add(new VocabulariesEntity(word, this));
-    }
-
-    public void setWord(String word) {
-        this.vocabulariesid.add(new VocabulariesEntity(word, this));
     }
 
     public void setVocabularies(List<VocabulariesEntity> vocabulariesid) {

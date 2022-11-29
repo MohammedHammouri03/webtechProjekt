@@ -1,6 +1,7 @@
 package de.htwberlin.webtech.service;
 
 import de.htwberlin.webtech.web.api.Vocabularies;
+import de.htwberlin.webtech.web.api.Vocabulariesmanipulationrequest;
 import de.htwberlin.webtech.web.persistence.*;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,7 @@ public class VocabulariesService {
         return vocabularies.stream().map(this::transformEntity).collect(Collectors.toList());
     }
     public Vocabularies create(Vocabulariesmanipulationrequest request) {
-        var vocabulariesEntity = new VocabulariesEntity(request.getWord(), PersonEntity);
+        var vocabulariesEntity = new VocabulariesEntity(request.getWord(), PersonEntity, request.getTranslation());
         vocabulariesEntity = vocabulariesRepository.save(vocabulariesEntity);
         return transformEntity(vocabulariesEntity);
     }
@@ -35,4 +36,3 @@ public class VocabulariesService {
 
     }
 }
-
