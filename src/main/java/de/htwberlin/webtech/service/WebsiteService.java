@@ -43,6 +43,5 @@ public class WebsiteService {
         }
         websiteRepository.deleteById(id);
         return true;
-
     }
 }
