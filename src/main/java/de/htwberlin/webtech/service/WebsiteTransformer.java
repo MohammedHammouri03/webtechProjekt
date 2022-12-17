@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 public class WebsiteTransformer {
 
     public Website transformEntityWebsite(WebsiteEntity websiteEntity) {
-        return new Website(websiteEntity.getWord(),websiteEntity.getTranslation());
+        return new Website(websiteEntity.getId(), websiteEntity.getWord(),websiteEntity.getTranslation(), websiteEntity.isFavorite());
 
     }
 }

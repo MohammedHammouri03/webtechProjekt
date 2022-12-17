@@ -16,10 +16,13 @@ public class WebsiteEntity {
     @Column(name = "translation", nullable = true)
     private String translation;
 
+@Column(name = "favorite", nullable = true)
+    private boolean favorite;
 
-    public WebsiteEntity(String word, String translation) {
+    public WebsiteEntity(String word, String translation, boolean favorite) {
         this.word = word;
         this.translation = translation;
+        this.favorite = favorite;
     }
 
 
@@ -44,5 +47,11 @@ public class WebsiteEntity {
 
     public void setTranslation(String translation) {
         this.translation = translation;
+    }
+    public boolean isFavorite() {
+        return favorite;
+    }
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
     }
 }

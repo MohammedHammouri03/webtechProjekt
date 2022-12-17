@@ -27,7 +27,7 @@ public class WebsiteService {
     }
 
     public Website create(Websitemanipulationrequest website) {
-        var websiteEntity = new WebsiteEntity(website.getWord(), website.getTranslation());
+        var websiteEntity = new WebsiteEntity(website.getWord(), website.getTranslation(), website.isFavorite());
         websiteEntity = websiteRepository.save(websiteEntity);
         return websiteTransformer.transformEntityWebsite(websiteEntity);
     }
@@ -42,6 +42,17 @@ public class WebsiteService {
             return false;
         }
         websiteRepository.deleteById(id);
+        return true;
+    }
+    public boolean updateById(Long id, Websitemanipulationrequest request) {
+        if (!websiteRepository.existsById(id)) {
+            return false;
+        }
+        var websiteEntity = websiteRepository.findById(id).get();
+        websiteEntity.setWord(request.getWord());
+        websiteEntity.setTranslation(request.getTranslation());
+        websiteEntity.setFavorite(request.isFavorite());
+        websiteRepository.save(websiteEntity);
         return true;
     }
 }

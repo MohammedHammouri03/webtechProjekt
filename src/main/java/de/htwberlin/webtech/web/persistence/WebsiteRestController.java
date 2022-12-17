@@ -41,4 +41,9 @@ public class WebsiteRestController {
         boolean sucessfull = websiteService.deleteById(id);
         return sucessfull? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
     }
+    @PutMapping(path = "/api/vokabel/{id}")
+    public ResponseEntity<Void> updateVokabel(@PathVariable Long id, @RequestBody Websitemanipulationrequest request) {
+        boolean sucessfull = websiteService.updateById(id, request);
+        return sucessfull? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
+    }
 }
