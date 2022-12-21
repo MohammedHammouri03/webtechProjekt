@@ -9,8 +9,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class WebsiteServiceTest implements WithAssertions {
@@ -31,4 +30,13 @@ class WebsiteServiceTest implements WithAssertions {
         assertThat(result).isTrue();
     }
 
+    @Test
+    @DisplayName("should return false if not found for delete ")
+    void deleteWebsiteNotFound() {
+        Long givenid = 1L;
+        doReturn(false).when(repository).existsById(givenid);
+        boolean result = underTest.deleteById(givenid);
+        verifyNoMoreInteractions(repository);
+        assertThat(result).isFalse();
+    }
 }

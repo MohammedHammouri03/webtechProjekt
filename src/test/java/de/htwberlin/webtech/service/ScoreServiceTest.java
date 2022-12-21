@@ -11,6 +11,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 @ExtendWith(MockitoExtension.class)
 class ScoreServiceTest implements WithAssertions {
@@ -29,6 +30,15 @@ class ScoreServiceTest implements WithAssertions {
         boolean result = underTest.deleteById(givenid);
         Mockito.verify(repository).deleteById(givenid);
         assertThat(result).isTrue();
+    }
+    @Test
+    @DisplayName("should return false if not found for delete ")
+    void deleteScoreNotFound() {
+        Long givenid = 1L;
+        doReturn(false).when(repository).existsById(givenid);
+        boolean result = underTest.deleteById(givenid);
+        verifyNoMoreInteractions(repository);
+        assertThat(result).isFalse();
     }
 }
 
