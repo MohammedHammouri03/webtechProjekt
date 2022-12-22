@@ -30,12 +30,6 @@ public class WebsiteRestController {
         URI uri = new URI("/api/vokabel/" + website.getId());
         return ResponseEntity.created(uri).build();
     }
-    @PostMapping(path = "/api/vokabel")
-    public ResponseEntity<Void> createPerson(@RequestBody Websitemanipulationrequest request) throws URISyntaxException {
-        var website = websiteService.create(request);
-        URI uri = new URI("/api/persons/" + website.getId());
-        return ResponseEntity.created(uri).build();
-    }
     @DeleteMapping(path = "/api/vokabel/{id}")
     public ResponseEntity<Void> deleteVokabel(@PathVariable Long id) {
         boolean sucessfull = websiteService.deleteById(id);
