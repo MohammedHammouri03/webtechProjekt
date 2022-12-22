@@ -62,4 +62,12 @@ class WebsiteRestControllerTest {
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
         assertEquals(new URI("/api/vokabel/1"), response.getHeaders().getLocation());
     }
+    @Test
+    @DisplayName("should update vocabulary")
+    void updateVocabulary() {
+        Websitemanipulationrequest request = new Websitemanipulationrequest("afternoon", "Nachmittag", 1L, true);
+        when(websiteService.updateById(1L, request)).thenReturn(true);
+        ResponseEntity<Void> response = controller.updateVokabel(1L, request);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+    }
 }
