@@ -16,7 +16,6 @@ public class Website {
 
 
     }
-
     public String getWord() {
         return word;
     }
