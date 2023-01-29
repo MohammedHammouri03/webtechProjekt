@@ -15,7 +15,8 @@ public class Webconfig implements WebMvcConfigurer {
                 .allowedOrigins("http://localhost:3000",
                         "http://localhost:8080",
                         "http://localhost:3001",
-                        "https://vokabeln-frontend.herokuapp.com/")
+                        "https://vokabeln-frontend.herokuapp.com/",
+                        "webtech22.netlify.app")
                 .allowedMethods("*");
     }
 
